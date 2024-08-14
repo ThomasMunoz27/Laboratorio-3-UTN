@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tp HTML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>TP1 hmtl (Encabezado)</h1>
+    </header>
+    <main>
+        <!--- 4.1 -->
+        <section>
+            <h1>1. Estructura Básica del Documento Html</h1>
+
+            <p>Este docimento HTML tiene una estructura básica que Incluye la declaracion de DOCTYPE, etiquetas de metadatos y un título</p>
+        </section>
+        
+        <!--- 4.2 -->
+        <section>
+            <h1>2. Encabezados y propiedades del texto en h1</h1>
+            <h2>Este es un texto en h2</h2>
+            <h3>Este es un texto en h3</h3>
+            <h4>Este es un texto en h4</h4>
+            <h5>Este es un texto en h5</h5>
+            <h6>Este es un texto en h6</h6>
+        
+            <p class="texto_negrita">
+                Texto negrita
+            </p>
+
+            <p class="texto_cursiva">
+                Texto en cursiva
+            </p>
+
+            <p class="texto_subrayado">
+                Texto subrayado
+            </p>
+        </section>
+
+
+        <!--- 4.3 -->
+        <section>
+        <h1>3. Divisiones y Agrupacion de Contenido</h1>
+            
+                <h3>Sección 1</h3>
+                <p>Contenido de la primera sección agrupada en un div</p>
+        </section>
+        
+        <section>
+                <h3>Sección 2</h3>
+                <p>Contenido de la segunda sección agrupada en un div</p>
+        </section>
+            
+
+        <!-- 4.4 -->
+        <section>
+            <h3>Instrucciones para cocina</h3>
+            <a href="#ingredientes">Ingredientes</a>
+            <ol>
+                <nav>
+                <li><a href="https://www.youtube.com/watch?v=zscGeAIA-pM">Cortar las verduras</a></li>
+                </nav>
+                <li>Ponerlas a sofreir</li>
+                <li>Revolver durante 5 min y agregar la <a href="#info_carne_molida">carne molida</a></li>
+                <li>Añadir sal y pimienta al gusto</li>
+                <li>Disfrutar!!!</li>
+            </ol>
+
+            <h3 id="ingredientes">Ingredientes</h3>
+            <ul>
+                <li>2 Cebollas</li>
+                <li>Medio pimiento Verde/Rojo</li>
+                <li>Sal</li>
+                <li>Aceite</li>
+                <li>Pimienta</li>
+                <li>Carne Molida</li>
+                <li>Ajo</li>
+            </ul>
+            <article>
+                <p id="info_carne_molida">
+                    La carne molida blablainfoinfoinfosobrelacarnemolida
+                </p>
+            </article>
+            
+        </section>
+
+        <!-- 4.4 -->
+        <div>
+            <h3>5. Contenido Multimedia</h3>
+            <img src="https://canarymeat.es/wp-content/uploads/2017/11/carne-molida-vacuno.jpg" alt="Carne molida cruda" width="200px" height="200px">
+
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/mV2q2B9bg8Y?si=t8lBQKp2kOFC_J78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <audio src="https://download.blender.org/peach/trailer/trailer_1080p.ogg" controls ></audio>
+    </div>
+
+        <!-- 4.6 -->
+        <section>
+            <h3>6. Tablas</h3>
+
+            <table class="tabla1">
+                <thead>
+                    <tr>
+                        <th>Columna 1</th>
+                        <th>Columna 2</th>
+                        <th>Columna 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Fila 1, Columna 1</td>
+                        <td>Fila 1, Columna 2</td>
+                        <td>Fila 1, Columna 3</td>
+                    </tr>
+                    <tr>
+                            <td>Fila 2, Columna 1</td>
+                            <td>Fila 2, Columna 2</td>
+                            <td>Fila 2, Columna 3</td>
+                    </tr>
+                    
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total 1</td>
+                        <td>Total 2</td>
+                        <td>Total 3</td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </section>
+
+        <!-- 4.7 -->
+        <section>
+            <h3>7. Formularios</h3>
+            <form action="">
+                    <div>
+                        <label for="">Email</label>
+                        <input type="email" placeholder="example@gmail.com">
+                    </div>
+                    
+                    <div>
+                        <label for="">Nombre</label>
+                        <input type="text" placeholder="Ingrese su nombre">
+                    </div>
+
+                    <div>
+                        <label for="">Apellido</label>
+                        <input type="text" placeholder="Ingrese su Apellido">
+                    </div>
+
+                    <div>
+                    <label for="">Edad</label>
+                    <input type="number" placeholder="Ingrese su edad">
+                    </div>
+                    <div>
+                        <label for="">Informacion extra</label>
+                        <textarea name="" id="" placeholder="Informacion extra"></textarea>
+                    </div>
+
+                    <button type="submit">Enviar</button>
+
+            </form>
+        </section>
+        
+    </main>
+    <footer>Todos los derechos reservados🗣🔥🔥🔥🔥</footer>
+</body>
+</html>
