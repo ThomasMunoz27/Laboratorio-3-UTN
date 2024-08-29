@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    background-color: blueviolet;
+    margin-bottom: 35px;
+}
+
+body{
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login__container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 300px;
+}
+
+.login__img{
+    height: 100%;
+    width: 100%;
+    box-shadow: 2px 2px 10px black;
+    border-radius: .8rem 0 0 .8rem;
+}
+
+.inicio__sesion{
+    margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    border: none ;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 .8rem .8rem 0;
+    box-shadow: 2px 2px 10px black;
+    background-color: white;
+}
+
+.login__center{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input__label{
+    margin-bottom: 15px;
+}
+
+.login__input{
+    margin: 10px;
+    border-radius: .8rem;
+    height: 25px;
+    text-align: center;
+    padding:  5px;
+    border: none;
+    background-color: grey;
+    
+    
+}
+.login__input::placeholder{
+    color: white;
+}
+
+.login__button{
+    margin: 5px;
+    background-color: blueviolet;
+    width: 15vw;
+    padding: 8px;
+    color: white;
+    border-radius: .8rem;
+    border: none;
+}
+
+.login__button:hover{
+    background-color: rgb(49, 4, 92);
+    width: 16vw;
+    height: 6vh;
+}
+
+form{
+    margin: 0px auto;
+}
+
+@media (width < 650px){
+    .login__img{
+        display: none;
+    }
+    .inicio__sesion{
+        border-radius: .8rem;
+    }
+
+    .login__container{
+        grid-template-columns: 1 1fr;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+}
