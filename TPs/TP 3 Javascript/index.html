@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <main>
+      <!--7. Introduccion al DOM-->
+      <div class = "exercice__container">
+        <h2>Ejercicio 1</h2>
+      <div id="p__container">
+          <p>Este es el primer párrafo.</p>
+          <p>Este es el segundo párrafo.</p>
+          <p>Este es el tercer párrafo.</p>
+
+      </div>
+
+      <button id="button__color">
+        Cambiar a color azul
+      </button>
+      </div>
+      
+
+
+      <div class = "exercice__container">
+        <h2>Ejercicio 2: Formulario con alerta</h2>
+        <p>Ingresa un texto:</p>
+        <form action="">
+          <input type="text" class="text__line">
+          <button class="form__button">Mostrar Alerta</button>
+        </form>
+      </div>
+
+
+      <!--8. Eventos en DOM-->
+      <div class = "exercice__container">
+        <h2>8. Eventos en Dom</h2>
+        <h3>Ejercicio 1</h3>
+        <ul id="element__list">
+          <li id="element__1">Elemento 1</li>
+          <li id="element__2">Elemento 2</li>
+          <li id="element__3">Elemento 3</li>
+          <li id="element__4">Elemento 4</li>
+        </ul>
+      </div>
+
+      <div class = "exercice__container">
+        <h2>Ejercicio 2: Campo de texto y botones</h2>
+        <input type="text" placeholder="Ingresa algo" class="text__hab" readonly>
+        <button id="button__off">Deshabilitar Campo</button>
+        <button id="button__on">Habilitar Campo
+        </button>
+      </div>
+      
+      <div class="exercice__container">
+        <h2>9.LocalStorage</h2>
+
+        <h3>Ejercicio 1</h3>
+
+        <form action="">
+
+          <label for="save__email">
+            Correo Electrónico:
+          </label>
+
+          <input type="email" class="save__email" placeholder="example@gmail.com">
+          
+          <button class="button__save__email">Guardar Correo</button>
+          <p id="email__display">Correo guardado: </p>
+          <button class="button__erase__email">Eliminar Correo Guardado</button>
+
+        </form>
+      </div>
+    </main>
+    <!--<div id="app"></div>-->
+    
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
