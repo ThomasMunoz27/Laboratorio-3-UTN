@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#squareContainer{
+    height: 300px;
+    width: 300px;
+    border: solid;
+    position: relative;
+
+}
+
+#square{
+    height: 50px;
+    width: 50px;
+    border: solid;
+    background-color: blueviolet;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    
+}
