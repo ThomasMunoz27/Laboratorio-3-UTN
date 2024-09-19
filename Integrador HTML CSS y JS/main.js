@@ -1,17 +1,15 @@
-const sectionsContainer = document.getElementById("sectionsContainer");
+import Swal from 'sweetalert2'
+
 
 const allProductsSection = document.getElementById("allProductsSection");
 const innerAllProductsSection = document.getElementById("innerAllProductsSection");
 
 
-const burgerSection = document.getElementById("burgerSection");
+
 const innerBurgerSection = document.getElementById("innerBurgerSection");
 
-const potatoSection = document.getElementById("potatoSection");
 const innerPotatoSection = document.getElementById("innerPotatoSection");
 
-
-const sodaSection = document.getElementById("sodaSection");
 const innerSodaSection = document.getElementById("innerSodaSection");
 innerSodaSection
 
@@ -21,6 +19,7 @@ const innerHihgPriceSection = document.getElementById("innerHihgPriceSection");
 const lowerPriceSection = document.getElementById("lowerPriceSection");
 const innerLowerPriceSection = document.getElementById("innerLowerPriceSection");
 
+const overlay = document.getElementById('overlay');
 
 const popupContainer = document.getElementById("popupContainer")
 
@@ -47,7 +46,10 @@ const mainBody = document.getElementById("mainBody")
 
 const addElementButton = document.getElementById("addElementButton")
 
-let buttonIdCounter = 1
+const deleteButton = document.getElementById("deleteButton")
+
+
+let selectedProduct; // Variable para almacenar el producto seleccionado
 
 let visible = "all"
 let priceVisible = ""
@@ -69,8 +71,9 @@ class Product {
 
 const h1 = new Product("Imgs/Hamburgesa1.jpg", "Hamburgesa viva", 999.9, "Hamburguesas")
 const h2 = new Product("Imgs/Hamburgesa2.jpg", "Hamburgesa mordida", 9.99, "Hamburguesas")
-const b1 = new Product(`Imgs/Fernet.png`, "Fernet Bronca", 499.9, "Gaseosas")
+const b1 = new Product("Imgs/Fernet.png", "Fernet Bronca", 499.9, "Gaseosas")
 const p1 = new Product("Imgs/Papas1.jpg", "Papas fritas McDonalds", 59.99, "Papas")
+
 
 let dictionary ={
     Hamburguesas:[h2, h1],
@@ -85,6 +88,10 @@ let dictionary ={
 
 //Events Listeners
 
+document.addEventListener("DOMContentLoaded", ()=>{
+    loadProductsFromLocalStorage();
+    renderProducts(dictionary);
+})
 
 searchButton.addEventListener("click", ()=>{
     let arrayAllProducts = [];
@@ -107,40 +114,71 @@ searchButton.addEventListener("click", ()=>{
 cancelButton.addEventListener("click", ()=>{
     popupContainer.style.display = "none"
     mainBody.classList.remove("blur")
+    overlay.classList.remove("overlay")
     resetPopUp();
 })
 
 upDateCancelButton.addEventListener("click", ()=>{
     updatePopUpContainer.style.display = "none"
     mainBody.classList.remove("blur")
+    overlay.classList.remove("overlay")
     resetPopUp();
 })
+
 addElementButton.addEventListener("click", ()=>{
 
 
     popupContainer.style.display = "flex" 
     mainBody.classList.add("blur")
+    overlay.classList.add("overlay")
 })
 
 
 acceptButton.addEventListener("click", ()=>{
-    const inputName = document.getElementById("inputName").value;
-    const inputImg = document.getElementById("inputImg").value;
-    const inputPrice = document.getElementById("inputPrice").value;
-    const selectCategory = document.getElementById("selectCategory").value;
+    try{
+        
+        const inputName = document.getElementById("inputName").value;
+        const inputImg = document.getElementById("inputImg").value;
+        const inputPrice = document.getElementById("inputPrice").value;
+        const selectCategory = document.getElementById("selectCategory").value;
+    
+        let newProduct = new Product(inputImg, inputName, inputPrice, selectCategory)
+    
+        let storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+    
+        storedProducts.push(newProduct)
+    
+        localStorage.setItem("products", JSON.stringify(storedProducts))
+    
+        dictionary[selectCategory].push(newProduct)
+    
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Se ha añadido el Producto",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    
+        renderProducts(dictionary)
+        popupContainer.style.display = "none"
+        mainBody.classList.remove("blur")
+        overlay.classList.remove("overlay")
+        resetPopUp()
 
-    let newProduct = new Product(inputImg, inputName, inputPrice, selectCategory)
-
-    let storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
-
-    storedProducts.push(newProduct)
-
-    localStorage.setItem("products", JSON.stringify(storedProducts))
-
-    dictionary[selectCategory].push(newProduct)
-
-    renderProducts(dictionary)
-    resetPopUp()
+    }catch (error){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal!",
+        });
+        
+        renderProducts(dictionary)
+        popupContainer.style.display = "none"
+        mainBody.classList.remove("blur")
+        overlay.classList.remove("overlay")
+        resetPopUp()
+    }
 })
 
 
@@ -192,12 +230,117 @@ categoriesAside.addEventListener("click", (event) => {
     }
 })
 
+deleteButton.addEventListener("click", ()=>{
+    
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+        Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
 
+            
+        });
+        let categoryOfProductToDelete = selectedProduct.category
+    
+        dictionary[categoryOfProductToDelete] = dictionary[categoryOfProductToDelete].filter(p => p.title !== selectedProduct.title)
+    
+    
+        let storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+        storedProducts = storedProducts.filter(p => p.title !== selectedProduct.title);
+        localStorage.setItem("products", JSON.stringify(storedProducts));
+        
+        // Actualizar la vista
+        
+        renderProducts(dictionary);
+        
+        // Cerrar el pop-up
+        updatePopUpContainer.style.display = "none";
+        mainBody.classList.remove("blur");
+        overlay.classList.remove("overlay")
+        }
+    });
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    loadProductsFromLocalStorage();
-    renderProducts(dictionary);
 })
+
+// Mover el listener fuera de createProductCard
+upDateAcceptButton.addEventListener("click", () => {
+
+    try{
+        if (selectedProduct) {
+            if(updateSelectCategory.value === "" || updateSelectCategory === "Elige una categoría"){
+                throw new error;
+            }
+            // Guardar el título original
+            const originalTitle = selectedProduct.title;
+            const originalCategory = selectedProduct.category
+    
+            // Actualizar el producto en el diccionario
+            dictionary[selectedProduct.category].forEach((element) => {
+                if (element.title === originalTitle) {
+                    
+                    
+                    element.title = updateInputName.value;
+                    element.img = updateInputImg.value;
+                    element.price = updateInputPrice.value;
+                    
+                    dictionary[originalCategory] = dictionary[originalCategory].filter(item => item !== element)
+                    element.category = updateSelectCategory.value
+                    dictionary[element.category].push(element);
+                    console.log(dictionary);
+                    
+                }
+            });
+    
+            // Actualizar el producto en localStorage
+            let storedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+            storedProducts = storedProducts.map((element) => {
+                if (element.title === originalTitle) {
+                    return {
+                        ...element,
+                        title: updateInputName.value,
+                        img: updateInputImg.value,
+                        price: updateInputPrice.value,
+                        category: updateSelectCategory.value
+                    };
+                }
+                return element;
+            });
+            localStorage.setItem("products", JSON.stringify(storedProducts));
+    
+            // Actualizar la vista
+            renderProducts(dictionary);
+    
+            // Cerrar el pop-up
+            updatePopUpContainer.style.display = "none";
+            mainBody.classList.remove("blur");
+            overlay.classList.remove("overlay")
+        }
+
+    }catch (error){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Algo salió mal!",
+            
+        });
+        renderProducts(dictionary)
+        popupContainer.style.display = "none"
+        mainBody.classList.remove("blur")
+        overlay.classList.remove("overlay")
+        resetPopUp()
+    }
+    
+});
+
 
 
 // Funciones
@@ -224,58 +367,44 @@ function beforeRender(){
 }
 
 
-function createProductCard(product){
+
+
+function createProductCard(product) {
     const newDiv = document.createElement("div");
-    newDiv.classList.add("card__grid")
-    
+    newDiv.classList.add("card__grid");
 
     const newImg = document.createElement("img");
     newImg.src = product.img;
-    newImg.classList.add("img__class")
+    newImg.classList.add("img__class");
     newDiv.appendChild(newImg);
 
     const newP = document.createElement("p");
-    newP.textContent = product.title
+    newP.textContent = product.title;
     newDiv.appendChild(newP);
 
     const newP2 = document.createElement("p");
     newP2.textContent = `Precio: $${product.price}`;
     newDiv.appendChild(newP2);
 
+    // Abrir el popup al hacer clic en la tarjeta
+    newDiv.addEventListener("click", () => {
+        updatePopUpContainer.style.display = "flex";
+        mainBody.classList.add("blur")
+        overlay.classList.add("overlay")
 
-    
-    newDiv.addEventListener("click", ()=>{
+        // Guardar el producto actual en una variable global
+        selectedProduct = product;
 
-        updatePopUpContainer.style.display = "flex"
-
+        // Mostrar los valores del producto en el pop-up
         updateInputName.value = product.title;
         updateInputImg.value = product.img;
         updateInputPrice.value = product.price;
-
-
-        upDateAcceptButton.addEventListener("click", ()=>{
-            dictionary[product.category].forEach(element =>{
-                if(product.title === element.title){
-                    element.title = updateInputName.value;
-                    element.img = updateInputImg.value;
-                    element.price = updateInputPrice.value;
-                    
-
-                    
-                    
-                }
-                
-                
-            })
-            
-            
-        })
     });
 
-
-
-    return newDiv
+    return newDiv;
 }
+
+
 
 
 function orderByHighPrice(products){
@@ -388,7 +517,9 @@ function loadProductsFromLocalStorage(){
     const productsInLocalStorage = JSON.parse(localStorage.getItem("products") || "[]")
 
     productsInLocalStorage.forEach(foodProduct =>{
-        console.log(foodProduct.category);
+        if (!dictionary[foodProduct.category]) {
+            dictionary[foodProduct.category] = [];
+        }
         
         dictionary[foodProduct.category].push(foodProduct);
     })

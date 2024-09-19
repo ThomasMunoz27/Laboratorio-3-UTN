@@ -33,6 +33,7 @@
 
     <main>
 
+      <div id="overlay" class=""></div>
 
       <div class="continer__popup" id="popupContainer">
 
@@ -64,16 +65,24 @@
         <input type="text" placeholder="Ingrese un nombre" required class="input__popup" id="updateInputName">
         <input type="text" placeholder="Ingrese una imagen" required class="input__popup" id="updateInputImg">
         <input type="number" name="" id="updateInputPrice" placeholder="Ingrese el precio" required class="input__popup">
+        
+        
         <select name="categoria" id="updateSelectCategory" class="input__popup">
           <option value="Elige una categoria" disabled>Elige una categoría</option>
           <option value="Hamburguesas">Hamburguesas</option>
           <option value="Papas">Papas</option>
           <option value="Gaseosas">Gaseosas</option>
           
-          </select>
+        </select>
+
+
+        
 
           <div class="buttons__popup">
             <button class="popup__button cancel" id="upDateCancelButton">Cancelar</button>
+
+            <button class="popup__button delete" id="deleteButton" >Eliminar</button>
+
             <button class="popup__button accept" id="upDateAcceptButton" >Aceptar</button>
 
           </div>

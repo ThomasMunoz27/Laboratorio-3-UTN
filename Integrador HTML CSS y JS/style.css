@@ -17,7 +17,7 @@
 }
 
 body{
-    background-color: #d9d593;
+    background-color: #F5F5F5;
 }
 
 .main__container__header{
@@ -26,7 +26,7 @@ body{
     width: 100%;
     height: 80px;
     padding: 8px;
-    background-color: #bc162a;
+    background-color: #6D4C41;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,8 +60,14 @@ body{
     width: 220px;
 }
 
+.input__header:hover{
+    background-color: #F4A261;
+    cursor: pointer;
+    border: #E63946;
+}
+
 .add__items__button{
-    border: 3px solid #302325;
+    border: 3px solid #E63946;
     background-color: white;
     border-radius: .4rem;
     display: flex;
@@ -75,12 +81,14 @@ body{
 
 
 
+
+
 .search__icon{
-    fill: #302325;
+    fill: #E63946;
 }
 
 .button__search{
-    border: 3px solid #302325;
+    border: 3px solid #E63946;
     background-color: white;
     border-radius: .4rem;
     display: flex;
@@ -93,8 +101,10 @@ body{
 }
 
 .button__search:hover{
-    background-color: #302325;
-    color: #d9d593;
+    background-color: #F1A661;
+    color: #6D4C41;
+    transform: scale(1.1); /* Agrandar el botón al 110% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .button__search:hover .search__icon{
@@ -103,8 +113,10 @@ body{
 
 
 .add__items__button:hover{
-    background-color: #302325;
-    color: #d9d593;
+    background-color: #F4A261;
+    color: #6D4C41;
+    transform: scale(1.1); /* Agrandar el botón al 110% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .main__body{
@@ -113,7 +125,8 @@ body{
 }
 
 p{
-    color: #d9d593;
+    color: #4682B4;
+    font-weight: bold;
 }
 
 .aside__categories{
@@ -121,7 +134,7 @@ p{
     border-radius: 0 .4rem .4rem 0;
     height: 100vh;
     width: 28%;
-    background-color: #ee7f27;
+    background-color: #6D4C41;
     display: flex;
     align-items:baseline;
     flex-direction: column;
@@ -134,15 +147,20 @@ p{
 
 .list__categories{
     
-    padding: 10px 0px;
+    padding: 10px;
     font-weight: bold;
     margin: 5px;
     list-style-type: none;
     width: fit-content;
+    border-radius: .4rem;
 }
 
 .list__categories:hover{
     cursor: pointer;
+    background-color: #F4A261;
+    color: #6D4C41;
+    transform: scale(1.1); /* Agrandar el botón al 110% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .section__container{
@@ -154,7 +172,7 @@ p{
 .inner__section{
     
     border-radius: .4rem;
-    background-color: #f5e1a4;
+    background-color: #F4A261;
     text-align: center;
     width: 100%;
     height: fit-content;
@@ -177,15 +195,23 @@ p{
     min-width: 400px;
     height: 92.5%;
     gap: 1rem;
+    grid-auto-flow: dense;
+    justify-content: center;
     
     padding: 8px;
 }
 
+.inner__section__grid .card__grid:hover{
+    
+        transform: scale(1.1); /* Agrandar el botón al 110% */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 
 .card__grid{
 
-    background-color: #302325;
+    background-color: #FFD700;
+    border-radius: .4rem;
     box-shadow: 2px 2px 10px black;
     width: fit-content;
     min-width: 80%;
@@ -193,7 +219,9 @@ p{
     margin: 0 auto;
     padding: 10px;
     
+
 }
+
 
 .img__class{
     width: 150px;
@@ -221,6 +249,18 @@ p{
     padding: 10px;
     box-shadow: 2px 2px 10px black;
     display: none;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 999; /* Asegúrate de que esté debajo del popup */
+    display: block; /* Oculto por defecto */
 }
 
 .blur {
@@ -254,14 +294,20 @@ p{
 
 .popup__button:hover{
     cursor: pointer;
+    transform: scale(1.1); /* Agrandar el botón al 110% */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cancel {
-    background: rgb(225, 0, 0);
+    background-color: rgb(54, 68, 197);
 }
 
 .accept {
-    background: #30b130;
+    background-color: #30b130;
+}
+
+.delete{
+    background-color: rgb(225, 0, 0);
 }
 
 
@@ -276,5 +322,11 @@ p{
 @media (width > 830px){
     .inner__section__grid{
         grid-template-columns: repeat(2, 4fr);
+    }
+}
+
+@media (width > 1600px){
+    .inner__section__grid{
+        grid-template-columns: repeat(3, 4fr);
     }
 }
