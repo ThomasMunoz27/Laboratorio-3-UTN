@@ -15,9 +15,9 @@
 
           <div class="search__bar_container">
 
-            <input type="text" class="input__header" placeholder="Ingrese un elemento" id="">
+            <input type="text" class="input__header" placeholder="Ingrese un elemento" id="searchBar" >
 
-            <button class="button__search">Buscar <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+            <button class="button__search" id="searchButton">Buscar <svg class="search__icon" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
             </button>
 
             
@@ -42,7 +42,7 @@
         <input type="text" placeholder="Ingrese una imagen" required class="input__popup" id="inputImg">
         <input type="number" name="" id="inputPrice" placeholder="Ingrese el precio" required class="input__popup">
         <select name="categoria" id="selectCategory" class="input__popup">
-          <option value="Elige una categoria">Elige una categoría</option>
+          <option value="Elige una categoria" disabled>Elige una categoría</option>
           <option value="Hamburguesas">Hamburguesas</option>
           <option value="Papas">Papas</option>
           <option value="Gaseosas">Gaseosas</option>
@@ -57,7 +57,30 @@
 
       </div>
 
-      <div class="main__body">
+      <div class="continer__popup" id="updatePopUpContainer">
+
+        <h2>Agregar o modificar un producto</h2>
+
+        <input type="text" placeholder="Ingrese un nombre" required class="input__popup" id="updateInputName">
+        <input type="text" placeholder="Ingrese una imagen" required class="input__popup" id="updateInputImg">
+        <input type="number" name="" id="updateInputPrice" placeholder="Ingrese el precio" required class="input__popup">
+        <select name="categoria" id="updateSelectCategory" class="input__popup">
+          <option value="Elige una categoria" disabled>Elige una categoría</option>
+          <option value="Hamburguesas">Hamburguesas</option>
+          <option value="Papas">Papas</option>
+          <option value="Gaseosas">Gaseosas</option>
+          
+          </select>
+
+          <div class="buttons__popup">
+            <button class="popup__button cancel" id="upDateCancelButton">Cancelar</button>
+            <button class="popup__button accept" id="upDateAcceptButton" >Aceptar</button>
+
+          </div>
+
+      </div>
+
+      <div class="main__body" id="mainBody">
         
 
         <aside class="aside__categories">
@@ -77,6 +100,16 @@
         </aside>
   
         <div class="section__container" id="sectionsContainer">
+
+          <section class="inner__section" id="allProductsSection">
+
+            <h3>Todos los productos</h3>
+            <div class="inner__section__grid" id="innerAllProductsSection">
+
+
+            </div>
+
+          </section>
   
           <section class="inner__section" id="burgerSection">
   
@@ -113,7 +146,7 @@
     
           </section>
           
-          <section class="inner__section" id="hihgPriceSection">
+          <section class="inner__section high__price" id="hihgPriceSection">
     
             <h3>Mayor Precio</h3>
             <div class="inner__section__grid" id="innerHihgPriceSection">
@@ -123,12 +156,12 @@
     
           </section>
         
-          <section class="inner__section" id="lowerPriceSection">
+          <section class="inner__section lower__price" id="lowerPriceSection">
     
             <h3>Menor Precio</h3>
             <div class="inner__section__grid" id="innerLowerPriceSection">
     
-    
+              
             </div>
     
           </section>

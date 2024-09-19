@@ -165,6 +165,7 @@ p{
 
 
 .inner__section__grid{
+
     display: grid;
     
     margin: 0 auto;
@@ -172,20 +173,22 @@ p{
 
 
     grid-template-columns: repeat(1, 4fr);
-    width: 400px;
+    width: fit-content;
+    min-width: 400px;
     height: 92.5%;
     gap: 1rem;
     
     padding: 8px;
 }
 
-.card__grid{
-    
 
+
+.card__grid{
 
     background-color: #302325;
     box-shadow: 2px 2px 10px black;
-    width: 80%;
+    width: fit-content;
+    min-width: 80%;
     height: 180px;
     margin: 0 auto;
     padding: 10px;
@@ -200,22 +203,29 @@ p{
 
 .continer__popup{
     
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     border: 3px solid #302325;
     border-radius: .4rem;
     background-color: #f5e1a4;
-    position: absolute;
+    position: fixed;
     margin: 10px;
     width: 95%;
     height: 300px;
     max-width: 1100px;
-    
+    z-index: 1000;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 10px;
     box-shadow: 2px 2px 10px black;
     display: none;
+}
+
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
 }
 
 .input__popup{
@@ -254,3 +264,17 @@ p{
     background: #30b130;
 }
 
+
+.high__price{
+    display: none;
+}
+
+.lower__price{
+    display: none;
+}
+
+@media (width > 830px){
+    .inner__section__grid{
+        grid-template-columns: repeat(2, 4fr);
+    }
+}
